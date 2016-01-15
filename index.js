@@ -16,13 +16,20 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 var settings = require('./settings.json');
 
+function prettyFormating(data)
+{
+	var text = '';
+	text += data;
+	return text.replace(',',', ');
+}
+
 function generateMailContent(data)
 {
 	var text = '';
 	text += '<!DOCTYPE><html><body>';
 	text += '<b>Name:</b> ' + data.name;
 	text += '<br><b>Email:</b> ' + data.email;
-	text += '<br><b>Options:</b> ' + data.options;
+	text += '<br><b>Options:</b> ' + prettyFormating(data.options);
 	text += '<br><br><b>Message:</b> ' + data.text;
 	text += '<br><br><b>Budget:</b> $' + data.budget;
 	text += '</body></html>';
@@ -39,7 +46,7 @@ app.post('/mail/submit', function(req, res)
 		from: 'no-reply@vanila.io',
 		to: settings.receiver,
 		replyTo: req.body.email, 
-		subject: '[vanila.io - new message] - ' + req.body.options + ' - $' + req.body.budget,
+		subject: '[vanila.io - new message] - ' + prettyFormating(req.body.options) + ' - $' + req.body.budget,
 		body: mailContent,
 		bodyType: 'html'
 	});
