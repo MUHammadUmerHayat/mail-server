@@ -18,16 +18,18 @@ var settings = require('./settings.json');
 
 function generateMailContent(data)
 {
-	var text;
+	var text = '';
+	text += '<!DOCTYPE><html><body>';
 	text += '<b>Name:</b> ' + data.name;
 	text += '<br><b>Email:</b> ' + data.email;
 	text += '<br><b>Options:</b> ' + data.options;
 	text += '<br><br><b>Message:</b> ' + data.text;
-	text += '<br><br><b>Budget:</b> ' + data.budget;
+	text += '<br><br><b>Budget:</b> $' + data.budget;
+	text += '</body></html>';
 	return text;
 }
 
-app.post('/submit', function(req, res)
+app.post('/mail/submit', function(req, res)
 {
 	res.send('ok');
 	var mailContent = generateMailContent(req.body);
@@ -36,7 +38,8 @@ app.post('/submit', function(req, res)
 	{
 		from: 'no-reply@vanila.io',
 		to: settings.receiver,
-		subject: '[VANILA] New message',
+		replyTo: req.body.email, 
+		subject: '[vanila.io - new message] - ' + req.body.options + ' - $' + req.body.budget,
 		body: mailContent,
 		bodyType: 'html'
 	});
@@ -50,4 +53,9 @@ app.post('/submit', function(req, res)
 	})
 });
 
+app.get('/', function(req, res)
+{
+    res.send('working');
+}
+);
 app.listen(settings.port);
