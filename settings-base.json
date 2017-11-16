@@ -2,5 +2,6 @@
 	"domain": "vanila.io",
 	"from": "no-reply@vanila.io",
 	"receiver": "you@mail.com",
-	"port": "4005"
+	"port": "4000",
+	"acceptedDomains": ["http://selix.co", "https://selix.co/"]
 }
