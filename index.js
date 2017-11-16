@@ -22,14 +22,17 @@ function prettyFormating(data) {
 }
 
 function generateMailContent(data) {
-	let text = "";
-	text += "<!DOCTYPE><html><body>";
-	text += `<b>Name:</b> ${data.name}`;
-	text += `<br><b>Email:</b> ${data.email}`;
-	text += `<br><b>Options:</b> ${prettyFormating(data.options)}`;
-	text += `<br><br><b>Message:</b> ${data.text}`;
-	text += `<br><br><b>Budget:</b> $${data.budget}`;
-	text += "</body></html>";
+	let text = `
+	<!DOCTYPE>
+	<html>
+		<body>
+			<b>Name:</b> ${data.name}
+			<br><b>Email:</b> ${data.email}
+			<br><b>Options:</b> ${prettyFormating(data.options)}
+			<br><br><b>Message:</b> ${data.text}
+			<br><br><b>Budget:</b> $${data.budget}
+		</body>
+	</html>`;
 	return text;
 }
 
