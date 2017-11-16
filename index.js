@@ -6,63 +6,60 @@
  			- budget
  */
 
-var Email = require('email').Email;
+const Email = require("email").Email;
+const express = require("express");
+const app = express();
 
-var express = require('express');
-var app = express();
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:true}));
+const settings = require("./settings.json");
 
-var settings = require('./settings.json');
-
-function prettyFormating(data)
-{
-	var text = '';
+function prettyFormating(data) {
+	let text = "";
 	text += data;
-	return text.replace(',',', ');
+	return text.replace(",", ", ");
 }
 
-function generateMailContent(data)
-{
-	var text = '';
-	text += '<!DOCTYPE><html><body>';
-	text += '<b>Name:</b> ' + data.name;
-	text += '<br><b>Email:</b> ' + data.email;
-	text += '<br><b>Options:</b> ' + prettyFormating(data.options);
-	text += '<br><br><b>Message:</b> ' + data.text;
-	text += '<br><br><b>Budget:</b> $' + data.budget;
-	text += '</body></html>';
+function generateMailContent(data) {
+	let text = "";
+	text += "<!DOCTYPE><html><body>";
+	text += `<b>Name:</b> ${data.name}`;
+	text += `<br><b>Email:</b> ${data.email}`;
+	text += `<br><b>Options:</b> ${prettyFormating(data.options)}`;
+	text += `<br><br><b>Message:</b> ${data.text}`;
+	text += `<br><br><b>Budget:</b> $${data.budget}`;
+	text += "</body></html>";
 	return text;
 }
 
-app.post('/mail/submit', function(req, res)
-{
-	res.send('ok');
-	var mailContent = generateMailContent(req.body);
+app.post("/mail/submit", ({ body }, res) => {
+	const mailContent = generateMailContent(body);
 
-	var msg = new Email(
-	{
-		from: 'no-reply@vanila.io',
+	const msg = new Email({
+		from: settings.from,
 		to: settings.receiver,
-		replyTo: req.body.email, 
-		subject: '[vanila.io - new message] - ' + prettyFormating(req.body.options) + ' - $' + req.body.budget,
+		replyTo: body.email,
+		subject: `[${settings.domain} - new message] - ${prettyFormating(
+			body.options
+		)} - $${body.budget}`,
 		body: mailContent,
-		bodyType: 'html'
+		bodyType: "html"
 	});
 
-	msg.send(function(err)
-	{
-		if(err)
+	msg.send(err => {
+		if (err) {
 			console.log(err);
-		else
-			console.log('Mail sended!');
-	})
+			res.send("not ok");
+		} else {
+			console.log("Mail sent!");
+			res.send("ok");
+		}
+	});
 });
 
-app.get('/', function(req, res)
-{
-    res.send('working');
-}
-);
+app.get("/", (req, res) => {
+	res.send("server working");
+});
+
 app.listen(settings.port);

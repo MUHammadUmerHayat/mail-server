@@ -1,4 +1,6 @@
 {
+	"domain": "vanila.io",
+	"from": "no-reply@vanila.io",
 	"receiver": "you@mail.com",
-	"port": "3005"
+	"port": "4005"
 }
