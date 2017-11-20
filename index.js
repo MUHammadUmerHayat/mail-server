@@ -12,16 +12,16 @@ const app = express();
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(({headers}, res, next) => {
-  const allowedOrigins = settings.acceptedDomains;
-  const origin = headers.origin;
-  if (allowedOrigins.indexOf(origin) > -1) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.header('Access-Control-Allow-Methods', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Contr1ol-Allow-Credentials', true);
-  return next();
+app.use(({ headers }, res, next) => {
+	const allowedOrigins = settings.acceptedDomains;
+	const origin = headers.origin;
+	if (allowedOrigins.indexOf(origin) > -1) {
+		res.setHeader("Access-Control-Allow-Origin", origin);
+	}
+	res.header("Access-Control-Allow-Methods", "*");
+	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+	res.header("Access-Contr1ol-Allow-Credentials", true);
+	return next();
 });
 
 const settings = require("./settings.json");
@@ -76,4 +76,4 @@ app.get("/", (req, res) => {
 	res.send("server working");
 });
 
-app.listen(settings.port);
+app.listen(settings.port || process.env.PORT);
