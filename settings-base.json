@@ -2,6 +2,5 @@
 	"domain": "vanila.io",
 	"from": "no-reply@vanila.io",
 	"receiver": "stefan@vanila.io",
-	"port": "8001",
 	"acceptedDomains": ["http://vanila.io", "https://vanila.io"]
 }

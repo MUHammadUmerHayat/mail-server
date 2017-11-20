@@ -5,7 +5,7 @@
  			- text
  			- budget
  */
-
+const port = process.env.PORT || 8001;
 const Email = require("email").Email;
 const express = require("express");
 const app = express();
@@ -76,4 +76,6 @@ app.get("/", (req, res) => {
 	res.send("server working");
 });
 
-app.listen(settings.port || process.env.PORT);
+app.listen(port, function() {
+	console.log(`App listening on PORT: ${port}`);
+});

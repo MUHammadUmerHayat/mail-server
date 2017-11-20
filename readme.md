@@ -1,5 +1,6 @@
-- install sendmail if not installed already.
+- install `sendmail` if not installed already.
 - run hostname to get hostname
 - add the following line to /etc/hosts, use the hostname you got from above line
 - `127.0.0.1 localhost.localdomain hostname`
-- run it using `pm2 start index.js --name "Mail"` for easier access
+- run it using `pm2 start pm2-mail.json` for easier access
+- It will run on port 8001 by default.
