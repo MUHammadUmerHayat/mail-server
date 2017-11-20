@@ -1,0 +1,11 @@
+{
+	"apps": [
+		{
+			"name": "mail_8001",
+			"script": "index.js",
+			"env": {
+				"PORT": "8001"
+			}
+		}
+	]
+}
