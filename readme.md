@@ -1,7 +1,7 @@
 # Setup a send only server
-- https://www.ubuntuupdates.org/package/core/precise/main/base/postfix-pcre
 - http://ubuntuhandbook.org/index.php/2014/04/change-hostname-ubuntu1404/
 - https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-as-a-send-only-smtp-server-on-ubuntu-16-04
+- https://www.ubuntuupdates.org/package/core/precise/main/base/postfix-pcre
 - https://blog.hqcodeshop.fi/archives/122-Fixing-Googles-new-IPv6-mail-policy-with-Postfix.html
 - https://serverfault.com/a/866440/444133
 
