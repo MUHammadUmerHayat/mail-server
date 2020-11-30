@@ -12,7 +12,8 @@
     "body-parser": "^1.14.2",
     "email": "^0.2.6",
     "express": "^4.13.3",
-    "nanoid": "^3.1.18"
+    "nanoid": "^3.1.18",
+    "pm2": "^4.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

@@ -40,8 +40,8 @@ function generateMailContent(id, data) {
 	<!DOCTYPE>
 	<html>
     <body>
-      <b>ID:<b> ${id}
-			<b>Name:</b> ${data.name}
+      <br><b>ID:</b> ${id}
+      <br><b>Name:</b> ${data.name}
 			<br><b>Email:</b> ${data.email}
 			<br><b>Options:</b> ${prettyFormating(data.options)}
 			<br><br><b>Message:</b> ${data.text}
