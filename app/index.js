@@ -73,10 +73,10 @@ app.post('/mail/submit', async ({ body }, res) => {
 
       msg.send(err => {
         if (err) {
-          console.log(err);
+          console.log(Date.now(), body.email, err);
           res.send('not ok');
         } else {
-          console.log(`Mail sent ${Date.now()}_${body.email}`);
+          console.log(`Mail sent ${Date.now()} ${body.email}`);
           res.send('ok');
         }
       });
