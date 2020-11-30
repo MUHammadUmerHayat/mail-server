@@ -1,6 +1,0 @@
-{
-	"domain": "vanila.io",
-	"from": "no-reply@vanila.io",
-	"receiver": "stefan@vanila.io",
-	"acceptedDomains": ["http://vanila.io", "https://vanila.io"]
-}

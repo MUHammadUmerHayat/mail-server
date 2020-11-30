@@ -1,0 +1,6 @@
+{
+  "domain": "vanila.io",
+  "from": "no-reply@vanila.io",
+  "receivers": ["stefan@vanila.io"],
+  "acceptedDomains": ["http://vanila.io", "https://vanila.io"]
+}
